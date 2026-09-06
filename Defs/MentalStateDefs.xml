@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <MentalBreakDef>
+    <defName>Donoteatthatshit_BowlSmash</defName>
+    <mentalState>Donoteatthatshit_BowlSmash</mentalState>
+    <baseCommonality>0</baseCommonality>
+    <intensity>Major</intensity>
+  </MentalBreakDef>
+
+  <MentalStateDef>
+    <defName>Donoteatthatshit_BowlSmash</defName>
+    <stateClass>Donoteatthatshit.MentalState_BowlSmash</stateClass>
+    <label>摔碗</label>
+    <category>Malicious</category>
+    <stopsJobs>false</stopsJobs>
+    <minTicksBeforeRecovery>360</minTicksBeforeRecovery>
+    <maxTicksBeforeRecovery>360</maxTicksBeforeRecovery>
+    <recoveryMessage IsNull="True" />
+    <baseInspectLine>精神状态：摔碗</baseInspectLine>
+  </MentalStateDef>
+</Defs>

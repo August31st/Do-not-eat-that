@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <AssemblyName>Donoteatthatshit</AssemblyName>
+    <RootNamespace>Donoteatthatshit</RootNamespace>
+    <RIMWORLD_MANAGED Condition="'$(RIMWORLD_MANAGED)' == ''">E:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data\Managed</RIMWORLD_MANAGED>
+    <HARMONY_PATH Condition="'$(HARMONY_PATH)' == ''">E:\SteamLibrary\steamapps\workshop\content\294100\2009463077\Current\Assemblies</HARMONY_PATH>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(RIMWORLD_MANAGED)\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(HARMONY_PATH)\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(RIMWORLD_MANAGED)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

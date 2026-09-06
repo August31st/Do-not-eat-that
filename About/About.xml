@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>吐出来</name>
+  <author>August31st</author>
+  <packageId>donoteatthatshit.plo</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2009463077</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <description>饿啊，吃到臭的你就给我吐出来啊！在殖民者吃饭触发食物中毒之前，高烹饪或高智力殖民者会察觉出来。把脏东西提前吐出来并产生负面心情，同时规避食物中毒。和特殊特性有联动，和厨子单挑的模组正在制作中。</description>
+</ModMetaData>
