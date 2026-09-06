@@ -40,10 +40,10 @@ public sealed class DonoteatthatshitMod : Mod
         int oldCookingThreshold = Settings.CookingThreshold;
         int oldIntellectualThreshold = Settings.IntellectualThreshold;
         bool oldLockBowlSmashToNormalSpeed = Settings.LockBowlSmashToNormalSpeed;
-        listing.TextFieldNumericLabeled("智力阈值（大于此数值时触发）", ref Settings.IntellectualThreshold, ref Settings.IntellectualBuffer, 0, 20);
-        listing.TextFieldNumericLabeled("烹饪阈值（大于此数值时触发）", ref Settings.CookingThreshold, ref Settings.CookingBuffer, 0, 20);
-        listing.CheckboxLabeled("摔碗时锁定1倍速", ref Settings.LockBowlSmashToNormalSpeed);
-        if (listing.ButtonText("恢复默认设置"))
+        listing.TextFieldNumericLabeled("Donoteatthatshit_IntellectualThreshold".Translate(), ref Settings.IntellectualThreshold, ref Settings.IntellectualBuffer, 0, 20);
+        listing.TextFieldNumericLabeled("Donoteatthatshit_CookingThreshold".Translate(), ref Settings.CookingThreshold, ref Settings.CookingBuffer, 0, 20);
+        listing.CheckboxLabeled("Donoteatthatshit_LockBowlSmashToNormalSpeed".Translate(), ref Settings.LockBowlSmashToNormalSpeed);
+        if (listing.ButtonText("Donoteatthatshit_ResetSettings".Translate()))
         {
             Settings.CookingThreshold = 8;
             Settings.IntellectualThreshold = 6;
@@ -144,7 +144,7 @@ internal static class ThingIngestedPatch
 
         if (PawnUtility.ShouldSendNotificationAbout(ingester) && MessagesRepeatAvoider.MessageShowAllowed("Donoteatthatshit-FoodSuspicion-" + ingester.thingIDNumber, 0.1f))
         {
-            Messages.Message((ingester.LabelShort + "在进食时察觉到不对劲，并吐了出来").CapitalizeFirst(), ingester, MessageTypeDefOf.NegativeEvent);
+            Messages.Message("Donoteatthatshit_FoodSuspicionMessage".Translate(ingester.Named("PAWN_label")), ingester, MessageTypeDefOf.NegativeEvent);
         }
 
         if (!ingester.Dead && ingester.jobs != null)
@@ -189,14 +189,14 @@ internal static class ThingIngestedPatch
     private static TraitMealOutcome GetKindOutcome(Pawn pawn)
     {
         return pawn.story?.traits?.HasTrait(TraitDefOf.Kind) == true
-            ? new TraitMealOutcome(null, pawn.LabelShort + "察觉到食物已经腐坏，并吐了出来", MessageTypeDefOf.NegativeEvent, nutritionZero: true, vomit: true)
+            ? new TraitMealOutcome(null, "Donoteatthatshit_KindFoodSuspicionMessage".Translate(pawn.Named("PAWN_label")), MessageTypeDefOf.NegativeEvent, nutritionZero: true, vomit: true)
             : null;
     }
 
     private static TraitMealOutcome GetAsceticOutcome(Pawn pawn)
     {
         return pawn.story?.traits?.HasTrait(TraitDefOf.Ascetic) == true
-            ? new TraitMealOutcome("Donoteatthatshit_AsceticRottenMeal", pawn.LabelShort + "察觉到食物已经腐坏，但是依然吃了下去", MessageTypeDefOf.NegativeEvent, retainFoodPoisoning: true, preserveNutrition: true)
+            ? new TraitMealOutcome("Donoteatthatshit_AsceticRottenMeal", "Donoteatthatshit_AsceticFoodSuspicionMessage".Translate(pawn.Named("PAWN_label")), MessageTypeDefOf.NegativeEvent, retainFoodPoisoning: true, preserveNutrition: true)
             : null;
     }
 
@@ -204,7 +204,7 @@ internal static class ThingIngestedPatch
     {
         TraitDef masochistTrait = DefDatabase<TraitDef>.GetNamedSilentFail("Masochist");
         return masochistTrait != null && pawn.story?.traits?.HasTrait(masochistTrait) == true
-            ? new TraitMealOutcome("Donoteatthatshit_MasochistRottenMeal", pawn.LabelShort + "察觉到食物已经腐坏，但是吃得很开心！？", MessageTypeDefOf.PositiveEvent, retainFoodPoisoning: true, preserveNutrition: true)
+            ? new TraitMealOutcome("Donoteatthatshit_MasochistRottenMeal", "Donoteatthatshit_MasochistFoodSuspicionMessage".Translate(pawn.Named("PAWN_label")), MessageTypeDefOf.PositiveEvent, retainFoodPoisoning: true, preserveNutrition: true)
             : null;
     }
 
@@ -226,7 +226,7 @@ internal static class ThingIngestedPatch
 
         return new TraitMealOutcome(
             null,
-            pawn.LabelShort + "察觉到食物已经腐坏，但是晚了",
+            "Donoteatthatshit_SicklyFoodSuspicionMessage".Translate(pawn.Named("PAWN_label")),
             MessageTypeDefOf.NegativeEvent,
             nutritionZero: true,
             vomit: true,
@@ -251,7 +251,7 @@ internal static class ThingIngestedPatch
 
         return new TraitMealOutcome(
             null,
-            pawn.LabelShort + "察觉到食物已经腐坏，但是吃得太快了",
+            "Donoteatthatshit_GourmandFoodSuspicionMessage".Translate(pawn.Named("PAWN_label")),
             MessageTypeDefOf.NegativeEvent,
             retainFoodPoisoning: true,
             preserveNutrition: true);
@@ -261,7 +261,7 @@ internal static class ThingIngestedPatch
     {
         return new TraitMealOutcome(
             null,
-            "在进食时察觉到不对劲，并吐了出来",
+            "Donoteatthatshit_FoodSuspicionMessage".Translate(),
             MessageTypeDefOf.NegativeEvent,
             nutritionZero: true,
             vomit: true,

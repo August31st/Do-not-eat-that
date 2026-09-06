@@ -16,3 +16,4 @@ D:\rimmod\donoteatthat\obj\Debug\net472\Donoteatthatshit.AssemblyInfo.cs
 D:\rimmod\donoteatthat\obj\Debug\net472\Donoteatthatshit.csproj.CoreCompileInputs.cache
 D:\rimmod\donoteatthat\obj\Debug\net472\Donoteatthatshit.dll
 D:\rimmod\donoteatthat\obj\Debug\net472\Donoteatthatshit.pdb
+D:\rimmod\donoteatthat\obj\Debug\net472\Donoteatthatshit.sourcelink.json

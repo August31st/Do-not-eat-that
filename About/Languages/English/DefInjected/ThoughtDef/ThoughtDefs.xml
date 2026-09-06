@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThoughtDef>
+    <defName>Donoteatthatshit_SuspiciousMeal</defName>
+    <stages>
+      <li><label>Who put something in my food?</label><description>Who put something in my food? This meal made me vomit horribly.</description></li>
+      <li><label>Who let Millira into the kitchen?</label><description>Who let Millira into the kitchen? I knew something was wrong with this meal.</description></li>
+      <li><label>If you want to kill me,just do it!</label><description>Just admit you poisoned it! Do not feed me this stuff again.</description></li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef>
+    <defName>Donoteatthatshit_AsceticRottenMeal</defName>
+    <stages>
+      <li><label>Someone mistreated the food</label><description>Someone mistreated the food. What a waste.</description></li>
+    </stages>
+  </ThoughtDef>
+  <ThoughtDef>
+    <defName>Donoteatthatshit_MasochistRottenMeal</defName>
+    <stages>
+      <li><label>Incredible flavor!</label><description>Incredible flavor! So spicy!</description></li>
+    </stages>
+  </ThoughtDef>
+</Defs>

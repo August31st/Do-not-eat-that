@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <MentalStateDef>
+    <defName>Donoteatthatshit_BowlSmash</defName>
+    <label>Bowl smashing</label>
+    <baseInspectLine>Mental state: bowl smashing</baseInspectLine>
+  </MentalStateDef>
+</Defs>
