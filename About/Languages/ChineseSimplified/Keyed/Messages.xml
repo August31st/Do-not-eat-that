@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <Donoteatthatshit_FoodSuspicionMessage>{PAWN_label}在进食时察觉到不对劲，并吐了出来</Donoteatthatshit_FoodSuspicionMessage>
+  <Donoteatthatshit_IntellectualThreshold>智力阈值（大于此数值时触发）</Donoteatthatshit_IntellectualThreshold>
+  <Donoteatthatshit_CookingThreshold>烹饪阈值（大于此数值时触发）</Donoteatthatshit_CookingThreshold>
+  <Donoteatthatshit_LockBowlSmashToNormalSpeed>摔碗时锁定1倍速</Donoteatthatshit_LockBowlSmashToNormalSpeed>
+  <Donoteatthatshit_PreserveNutritionWhenFoodIsLow>食物不足时保留这份饭的营养值</Donoteatthatshit_PreserveNutritionWhenFoodIsLow>
+  <Donoteatthatshit_ResetSettings>恢复默认设置</Donoteatthatshit_ResetSettings>
+  <Donoteatthatshit_KindFoodSuspicionMessage>{PAWN_label}察觉到食物已经腐坏，并吐了出来</Donoteatthatshit_KindFoodSuspicionMessage>
+  <Donoteatthatshit_FoodLowNutritionMessage>{PAWN_label}觉得这一份饭吃的有点恶心</Donoteatthatshit_FoodLowNutritionMessage>
+  <Donoteatthatshit_AsceticFoodSuspicionMessage>{PAWN_label}察觉到食物已经腐坏，但是依然吃了下去</Donoteatthatshit_AsceticFoodSuspicionMessage>
+  <Donoteatthatshit_MasochistFoodSuspicionMessage>{PAWN_label}察觉到食物已经腐坏，但是吃得很开心！？</Donoteatthatshit_MasochistFoodSuspicionMessage>
+  <Donoteatthatshit_SicklyFoodSuspicionMessage>{PAWN_label}察觉到食物已经腐坏，但是晚了</Donoteatthatshit_SicklyFoodSuspicionMessage>
+  <Donoteatthatshit_GourmandFoodSuspicionMessage>{PAWN_label}察觉到食物已经腐坏，但是吃得太快了</Donoteatthatshit_GourmandFoodSuspicionMessage>
+</LanguageData>
