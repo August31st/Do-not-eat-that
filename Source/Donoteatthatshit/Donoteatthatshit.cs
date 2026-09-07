@@ -40,20 +40,23 @@ public sealed class DonoteatthatshitMod : Mod
         int oldCookingThreshold = Settings.CookingThreshold;
         int oldIntellectualThreshold = Settings.IntellectualThreshold;
         bool oldLockBowlSmashToNormalSpeed = Settings.LockBowlSmashToNormalSpeed;
+        bool oldPreserveNutritionWhenFoodIsLow = Settings.PreserveNutritionWhenFoodIsLow;
         listing.TextFieldNumericLabeled("Donoteatthatshit_IntellectualThreshold".Translate(), ref Settings.IntellectualThreshold, ref Settings.IntellectualBuffer, 0, 20);
         listing.TextFieldNumericLabeled("Donoteatthatshit_CookingThreshold".Translate(), ref Settings.CookingThreshold, ref Settings.CookingBuffer, 0, 20);
         listing.CheckboxLabeled("Donoteatthatshit_LockBowlSmashToNormalSpeed".Translate(), ref Settings.LockBowlSmashToNormalSpeed);
+        listing.CheckboxLabeled("Donoteatthatshit_PreserveNutritionWhenFoodIsLow".Translate(), ref Settings.PreserveNutritionWhenFoodIsLow);
         if (listing.ButtonText("Donoteatthatshit_ResetSettings".Translate()))
         {
             Settings.CookingThreshold = 8;
             Settings.IntellectualThreshold = 6;
             Settings.LockBowlSmashToNormalSpeed = true;
-            Settings.CookingBuffer = "";
-            Settings.IntellectualBuffer = "";
+            Settings.PreserveNutritionWhenFoodIsLow = false;
+            Settings.CookingBuffer = "8";
+            Settings.IntellectualBuffer = "6";
             Settings.Write();
         }
         listing.End();
-        if (oldCookingThreshold != Settings.CookingThreshold || oldIntellectualThreshold != Settings.IntellectualThreshold || oldLockBowlSmashToNormalSpeed != Settings.LockBowlSmashToNormalSpeed)
+        if (oldCookingThreshold != Settings.CookingThreshold || oldIntellectualThreshold != Settings.IntellectualThreshold || oldLockBowlSmashToNormalSpeed != Settings.LockBowlSmashToNormalSpeed || oldPreserveNutritionWhenFoodIsLow != Settings.PreserveNutritionWhenFoodIsLow)
         {
             Settings.Write();
         }
@@ -65,14 +68,16 @@ public sealed class DonoteatthatshitSettings : ModSettings
     public int CookingThreshold = 8;
     public int IntellectualThreshold = 6;
     public bool LockBowlSmashToNormalSpeed = true;
-    public string CookingBuffer = "";
-    public string IntellectualBuffer = "";
+    public bool PreserveNutritionWhenFoodIsLow;
+    public string CookingBuffer = "8";
+    public string IntellectualBuffer = "6";
 
     public override void ExposeData()
     {
         Scribe_Values.Look(ref CookingThreshold, "cookingThreshold", 8);
         Scribe_Values.Look(ref IntellectualThreshold, "intellectualThreshold", 6);
         Scribe_Values.Look(ref LockBowlSmashToNormalSpeed, "lockBowlSmashToNormalSpeed", true);
+        Scribe_Values.Look(ref PreserveNutritionWhenFoodIsLow, "preserveNutritionWhenFoodIsLow", false);
     }
 }
 
@@ -120,6 +125,12 @@ internal static class ThingIngestedPatch
             return;
         }
 
+        if (DonoteatthatshitMod.Settings.PreserveNutritionWhenFoodIsLow && MealPoisoningTracker.IsLowFoodAlertActive(ingester))
+        {
+            ApplyLowFoodOutcome(ingester);
+            return;
+        }
+
         __result = 0f;
         Hediff foodPoisoning = ingester.health?.hediffSet.GetFirstHediffOfDef(HediffDefOf.FoodPoisoning);
         if (!MealPoisoningTracker.HadFoodPoisoningBeforeMeal(ingester) && foodPoisoning != null)
@@ -151,6 +162,30 @@ internal static class ThingIngestedPatch
         {
             MealPoisoningTracker.QueueBowlSmashEvent(ingester);
             ingester.jobs.StartJob(JobMaker.MakeJob(JobDefOf.Vomit), JobCondition.InterruptForced, null, resumeCurJobAfterwards: true);
+        }
+    }
+
+    private static void ApplyLowFoodOutcome(Pawn pawn)
+    {
+        bool hadFoodPoisoningBeforeMeal = MealPoisoningTracker.HadFoodPoisoningBeforeMeal(pawn);
+        if (!hadFoodPoisoningBeforeMeal)
+        {
+            Hediff foodPoisoning = pawn.health?.hediffSet.GetFirstHediffOfDef(HediffDefOf.FoodPoisoning);
+            if (foodPoisoning != null)
+            {
+                pawn.health.RemoveHediff(foodPoisoning);
+            }
+        }
+
+        if (PawnUtility.ShouldSendNotificationAbout(pawn) && MessagesRepeatAvoider.MessageShowAllowed("Donoteatthatshit-FoodLowNutrition-" + pawn.thingIDNumber, 0.1f))
+        {
+            Messages.Message("Donoteatthatshit_FoodLowNutritionMessage".Translate(pawn.Named("PAWN_label")), pawn, MessageTypeDefOf.NegativeEvent);
+        }
+
+        if (!pawn.Dead && pawn.jobs != null)
+        {
+            MealPoisoningTracker.QueueBowlSmashEvent(pawn);
+            pawn.jobs.StartJob(JobMaker.MakeJob(JobDefOf.Vomit), JobCondition.InterruptForced, null, resumeCurJobAfterwards: true);
         }
     }
 
@@ -648,5 +683,16 @@ internal static class MealPoisoningTracker
         bool previous = PreviousFoodPoisoning.TryGetValue(pawn, out bool value) && value;
         PreviousFoodPoisoning.Remove(pawn);
         return previous;
+    }
+
+    public static bool IsLowFoodAlertActive(Pawn pawn)
+    {
+        Map map = pawn?.Map;
+        if (map == null || !map.IsPlayerHome || !map.mapPawns.AnyColonistSpawned || Find.TickManager.TicksGame < 150000)
+        {
+            return false;
+        }
+
+        return map.resourceCounter.TotalHumanEdibleNutrition < 4f * map.mapPawns.FreeColonistsSpawnedCount;
     }
 }

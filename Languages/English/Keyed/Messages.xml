@@ -3,8 +3,10 @@
   <Donoteatthatshit_IntellectualThreshold>Intellectual threshold (trigger above this value)</Donoteatthatshit_IntellectualThreshold>
   <Donoteatthatshit_CookingThreshold>Cooking threshold (trigger above this value)</Donoteatthatshit_CookingThreshold>
   <Donoteatthatshit_LockBowlSmashToNormalSpeed>Lock game speed to 1x during bowl smashing</Donoteatthatshit_LockBowlSmashToNormalSpeed>
+  <Donoteatthatshit_PreserveNutritionWhenFoodIsLow>Keep meal nutrition when food is low</Donoteatthatshit_PreserveNutritionWhenFoodIsLow>
   <Donoteatthatshit_ResetSettings>Restore default settings</Donoteatthatshit_ResetSettings>
   <Donoteatthatshit_FoodSuspicionMessage>{PAWN_label} noticed something was wrong while eating and vomited.</Donoteatthatshit_FoodSuspicionMessage>
+  <Donoteatthatshit_FoodLowNutritionMessage>{PAWN_label} feels a little sick about this meal.</Donoteatthatshit_FoodLowNutritionMessage>
   <Donoteatthatshit_KindFoodSuspicionMessage>{PAWN_label} noticed the food had spoiled and vomited.</Donoteatthatshit_KindFoodSuspicionMessage>
   <Donoteatthatshit_AsceticFoodSuspicionMessage>{PAWN_label} noticed the food had spoiled, but ate it anyway.</Donoteatthatshit_AsceticFoodSuspicionMessage>
   <Donoteatthatshit_MasochistFoodSuspicionMessage>{PAWN_label} noticed the food had spoiled, but enjoyed eating it!?</Donoteatthatshit_MasochistFoodSuspicionMessage>

@@ -1,0 +1,10 @@
+{
+  "servers": {
+    "rimsage": {
+      "type": "stdio",
+      "command": "bun",
+      "args": ["run", "src/stdio.ts"],
+      "cwd": "D:\\rimmod\\RimSage"
+    }
+  }
+}

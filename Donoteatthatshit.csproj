@@ -5,6 +5,8 @@
     <Nullable>disable</Nullable>
     <AssemblyName>Donoteatthatshit</AssemblyName>
     <RootNamespace>Donoteatthatshit</RootNamespace>
+    <OutputPath>Assemblies\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <RIMWORLD_MANAGED Condition="'$(RIMWORLD_MANAGED)' == ''">E:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data\Managed</RIMWORLD_MANAGED>
     <HARMONY_PATH Condition="'$(HARMONY_PATH)' == ''">E:\SteamLibrary\steamapps\workshop\content\294100\2009463077\Current\Assemblies</HARMONY_PATH>
   </PropertyGroup>
@@ -22,4 +24,8 @@
       <Private>False</Private>
     </Reference>
   </ItemGroup>
+  <Target Name="CleanGeneratedBuildFolders" AfterTargets="Build">
+    <Exec Command="if exist &quot;$(BaseIntermediateOutputPath)&quot; rmdir /s /q &quot;$(BaseIntermediateOutputPath)&quot;" />
+    <Exec Command="if exist &quot;bin&quot; rmdir /s /q &quot;bin&quot;" />
+  </Target>
 </Project>
