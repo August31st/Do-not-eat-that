@@ -155,7 +155,7 @@ internal static class ThingIngestedPatch
 
         if (PawnUtility.ShouldSendNotificationAbout(ingester) && MessagesRepeatAvoider.MessageShowAllowed("Donoteatthatshit-FoodSuspicion-" + ingester.thingIDNumber, 0.1f))
         {
-            Messages.Message("Donoteatthatshit_FoodSuspicionMessage".Translate(ingester.Named("PAWN_label")), ingester, MessageTypeDefOf.NegativeEvent);
+            Messages.Message("Donoteatthatshit_FoodSuspicionMessage".Translate(ingester.Named("PAWN")), ingester, MessageTypeDefOf.NegativeEvent);
         }
 
         if (!ingester.Dead && ingester.jobs != null)
